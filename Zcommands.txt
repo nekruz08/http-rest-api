@@ -1,0 +1,7 @@
+go get github.com/BurntSushi/toml                   // пакет для работы с toml файлами
+go get github.com/sirupsen/logrus                   // пакет для логгирования
+go get github.com/stretchr/testify/assert@v1.9.0    // пакет для покрыти тестами
+
+make                                    // открыть проект в терминале и запустить эту команду, она в свою очередь запускает Makefile
+make test                               // запусе тестов
+./apiserver -help                       //  вызываем наш бинарник с флагом --help
