@@ -5,6 +5,10 @@ import (
 	"github.com/BurntSushi/toml"
 	"log"
 
+	"github.com/golang-migrate/migrate/v4"
+	_ "github.com/golang-migrate/migrate/v4/database/postgres"
+	_ "github.com/golang-migrate/migrate/v4/source/github"
+	_ "github.com/lib/pq"
 	"github.com/nekruz08/http-rest-api/internal/app/apiserver"
 )
 
@@ -27,4 +31,10 @@ func main() {
 	if err := s.Start(); err != nil {
 		log.Fatal(err)
 	}
+
+	m, err := migrate.New(
+			"github://mattes:personal-access-token@mattes/migrate_test",
+		"postgres://postgres:postgres@localhost:5432/restapi_dev?sslmode=disable")
+		m.Steps(2)
 }
+

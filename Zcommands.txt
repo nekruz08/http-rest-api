@@ -1,7 +1,21 @@
+
 go get github.com/BurntSushi/toml                   // пакет для работы с toml файлами
 go get github.com/sirupsen/logrus                   // пакет для логгирования
 go get github.com/stretchr/testify/assert@v1.9.0    // пакет для покрыти тестами
+go get github.com/lib/pq                            // потом в секции import(...) импортировать ее нужно анонимно что бы методы не импортировались
+go get github.com/golang-migrate/migrate/v4/cmd/migrate@latest
 
 make                                    // открыть проект в терминале и запустить эту команду, она в свою очередь запускает Makefile
 make test                               // запусе тестов
+make; ./apiserver                       // указываем make -у что и откуда запустить
 ./apiserver -help                       //  вызываем наш бинарник с флагом --help
+
+
+POSTGRES:
+createdb restapi_dev                    // команда на создание база данных
+psql -U postgres restapi_dev            // подкючаемся к базе данных проверим что миграции проигнались
+
+
+migrate create -ext sql -dir migrations create_users команда для создание пустых файлов в формате .sql
+migrate -path migrations -database "postgres://postgres:postgres@localhost:5432/restapi_dev?sslmode=disable" up заполняем созданние файлы sql запросами на создани и drop, после этого введом эту команду она создасть наши команды в база даннех, то что мы описали в файлах все это создается в базе данных
+migrate -path migrations -database "postgres://postgres:postgres@localhost:5432/restapi_test?sslmode=disable" up такая же команда только для другого база данных restapi_test, т.е то что у нас есть в папке migrations т.е. sql запросы в этих файлах созадетс в новой базе данных
