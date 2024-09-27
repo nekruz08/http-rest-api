@@ -33,9 +33,3 @@ func main() {
 	}
 }
 
-//
-//m, err := migrate.New(
-//"github://mattes:personal-access-token@mattes/migrate_test",
-//"postgres://postgres:postgres@localhost:5432/restapi_dev?sslmode=disable")
-//m.Steps(2)
-

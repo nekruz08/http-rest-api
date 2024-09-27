@@ -7,6 +7,10 @@ go get github.com/golang-migrate/migrate/v4/cmd/migrate@latest
 go get golang.org/x/crypto                          // пакет для шифрованния данны а именно пороля
 go get github.com/go-ozzo/ozzo-validation           // пакет для валидация данных нужно обоих установит
 go get github.com/go-ozzo/ozzo-validation/is        // пакет для валидация данных нужно обоих установит
+go get github.com/gorilla/sessions                  // библиотека, которая предоставляет удобные инструменты для работы с сессиями в веб-приложениях на Go. Она поддерживает различные методы хранения сессий, такие как: В памяти, Cookie, Хранение в базе данных, И другие.
+
+
+
 
 make                                    // открыть проект в терминале и запустить эту команду, она в свою очередь запускает Makefile
 make test                               // запусекет все тесты от овсюду тестов
@@ -16,8 +20,9 @@ make; ./apiserver                       // указываем make -у что и
 
 
 POSTGRES:
-createdb restapi_dev                    // команда на создание база данных
-psql -U postgres restapi_dev            // подкючаемся к базе данных проверим что миграции проигнались
+create database restapi_dev;                    // команда на создание база данных
+create database restapi_test;                   // команда на создание база данных длы тестов походу
+psql -U postgres restapi_dev;            // подкючаемся к базе данных проверим что миграции проигнались
 
 
 migrate create -ext sql -dir migrations create_users команда для создание пустых файлов в формате .sql
